@@ -9,8 +9,13 @@ def main():
 
 
 
+
 if __name__=='__main__':
     # get ip and save in db
     main()
+
+    #refresh
+    getip.refresh_db()
+
     # random choice ip
     print (util.get())

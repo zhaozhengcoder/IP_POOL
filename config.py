@@ -16,7 +16,7 @@ timeout=10
 
 verifyip="http://www.jianshu.com"
 
-crawl_pagenum=10
+crawl_pagenum=3
 
 thread_num=50
 

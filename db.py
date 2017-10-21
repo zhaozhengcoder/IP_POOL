@@ -62,3 +62,15 @@ def get_iplist():
     finally:
         conn.close()
         return iplist
+
+def drop_table():
+    try:
+        conn=pymysql.connect(config.MYSQL_HOST,config.MYSQL_USER,config.MYSQL_PASSWD,config.MYSQL_DBNAME)
+        cursor=conn.cursor()       
+        cursor.execute('drop table if exists {}'.format(config.MYSQL_TABLE_NAME))
+        conn.commit()
+    except Exception as e:
+        print (e)
+        conn.rollback()
+    finally:
+        conn.close()

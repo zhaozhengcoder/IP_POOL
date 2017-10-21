@@ -84,5 +84,13 @@ def verifyip_multithread(ip_list):
 def data_persistence(verified_iplist):
     db.init()
     db.insert_iplist(verified_iplist)
-    
+
+
+def refresh_db():
+    ip_list=db.get_iplist()
+    verified_iplist=verifyip_multithread(ip_list)
+    #delete table
+    db.drop_table()
+    #insert table
+    data_persistence(verified_iplist)
     

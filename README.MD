@@ -13,7 +13,9 @@
 ### 如何使用
 1. 第一次使用的时候，需要修改一下mysql的配置
 2. 具体的使用方法 可以看demo.py 文件
-3. 可以将本项目放到自己爬虫的项目里面，使用的时候 util.get() 随机获得一个proxy 使用
+3. demo.py 里面的main函数，是第一次进行爬取可用ip代理并保存到数据库
+4. util.get() 随机获得一个可用的proxy
+5. demo.py 里面的refresh() 用来更新数据库里面的ip代理
 
 
 ### 关于config文件
@@ -24,7 +26,7 @@
 运行环境 ubuntu 16.04 ，Python 3.5.2
 
 
-### ip代理的来源
+### IP代理的来源
 ```
 http://www.kuaidaili.com/free
 http://www.xicidaili.com/nn/
