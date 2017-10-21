@@ -62,17 +62,3 @@ def get_iplist():
     finally:
         conn.close()
         return iplist
-
-
-
-if __name__=="__main__":
-    print ("ok")
-    """
-    ip_list=['192.168.100.21:10000','192.168.200.21:10000']
-    insert_iplist(ip_list)
-    get_iplist=get_iplist()
-    for i in get_iplist:
-        print (i)
-    insert('192.168.3.21:10000')
-    insert('192.168.3.22:10000')
-    """
