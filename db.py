@@ -6,7 +6,7 @@ def init():
     try:
         conn=pymysql.connect(config.MYSQL_HOST,config.MYSQL_USER,config.MYSQL_PASSWD,config.MYSQL_DBNAME)
         cursor=conn.cursor()
-        mysql="create table if not exists {tablename} ( ip_port varchar(20) primary key not null ); ".format(tablename=config.MYSQL_TABLE_NAME)
+        mysql="create table if not exists {tablename} ( ip_port varchar(30) primary key not null ); ".format(tablename=config.MYSQL_TABLE_NAME)
         #print (mysql)
         cursor.execute(mysql)
         conn.commit()
@@ -20,7 +20,7 @@ def insert_item(ip_port):
     try:
         conn=pymysql.connect(config.MYSQL_HOST,config.MYSQL_USER,config.MYSQL_PASSWD,config.MYSQL_DBNAME)
         cursor=conn.cursor()
-        mysql="insert into {tablename} values ('{ip_port}') ".format(tablename=config.MYSQL_TABLE_NAME,ip_port=ip_port)
+        mysql="insert ignore into {tablename} values ('{ip_port}') ".format(tablename=config.MYSQL_TABLE_NAME,ip_port=ip_port)
         print (mysql)
         cursor.execute(mysql)
         conn.commit()
@@ -35,7 +35,7 @@ def insert_iplist(ip_list):
         conn=pymysql.connect(config.MYSQL_HOST,config.MYSQL_USER,config.MYSQL_PASSWD,config.MYSQL_DBNAME)
         cursor=conn.cursor()
         for item in ip_list:
-            mysql="insert into {tablename} values ('{ip_port}') ".format(tablename=config.MYSQL_TABLE_NAME,ip_port=item)
+            mysql="insert ignore into {tablename} values ('{ip_port}') ".format(tablename=config.MYSQL_TABLE_NAME,ip_port=item)
             print (mysql)
             cursor.execute(mysql)
         conn.commit()
