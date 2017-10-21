@@ -23,3 +23,9 @@
 ### other
 运行环境 ubuntu 16.04 ，Python 3.5.2
 
+
+### ip代理的来源
+```
+http://www.kuaidaili.com/free
+http://www.xicidaili.com/nn/
+```
