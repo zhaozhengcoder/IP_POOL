@@ -2,6 +2,11 @@ import requests
 import config
 import db
 from lxml import etree
+import threading
+import queue
+import time
+
+
 
 def getpage(target_url):
     page_content=""
@@ -42,6 +47,39 @@ def verifyip(ip_list):
             print ('error : ',e)
     return verified_iplist
 
+def task(ip_queue,verified_queue):
+    while not ip_queue.empty():
+        ip_item=ip_queue.get()
+        proxies={
+            "http":"http://{ip_item}".format(ip_item=ip_item),
+            "https":"https://{ip_item}".format(ip_item=ip_item)
+        }
+        try:
+            response=requests.get(config.verifyip,headers=config.base_headers,proxies=proxies,timeout=config.timeout)
+            if response.status_code==200:
+                verified_queue.put(ip_item)
+        except Exception as e:
+            print ('error : ',e)
+
+def verifyip_multithread(ip_list):
+    ip_queue=queue.Queue()
+    verified_queue=queue.Queue()
+    thread_list=[]
+    
+    for item in ip_list:
+        ip_queue.put(item)
+    for i in range(0,config.thread_num):
+        t=threading.Thread(target=task,name='thread{}'.format(i),args=(ip_queue,verified_queue,))
+        thread_list.append(t)
+    for i in thread_list:
+        i.start()
+    for i in thread_list:
+        i.join()
+    verified_iplist=[]
+    while not verified_queue.empty():
+        verified_iplist.append(verified_queue.get())
+    return verified_iplist
+
 
 def data_persistence(verified_iplist):
     db.init()
@@ -52,8 +90,9 @@ def data_persistence(verified_iplist):
 if __name__=='__main__':
     print ('ok')
     ip_list=getip()
-    
-    verified_iplist=verifyip(ip_list)
+    verified_iplist=verifyip_multithread(ip_list)
     data_persistence(verified_iplist)
+
+    print ('get ip >')
     print (verified_iplist)
     

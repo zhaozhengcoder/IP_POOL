@@ -12,16 +12,13 @@ base_headers = {'Accept-Language': 'zh-CN,zh;q=0.8,en;q=0.6,zh-TW;q=0.4',
                 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36',
                 'Connection': 'keep-alive',
                 'Referer': 'http://www.baidu.com'}
-timeout=20
+timeout=10
 
 verifyip="http://www.jianshu.com"
-"""
-url_agent_pool = {
-    "http://www.kuaidaili.com/free/inha/{pagenum}": ["//div/table/tbody/tr"],
-    "http://www.xicidaili.com/nn/{pagenum}":["//table/tr[@class='odd']"],
-}
-"""
+
 crawl_pagenum=10
+
+thread_num=50
 
 url_agent_pool = {
     "http://www.kuaidaili.com/free/inha/{pagenum}": {

@@ -21,7 +21,7 @@ def insert_item(ip_port):
         conn=pymysql.connect(config.MYSQL_HOST,config.MYSQL_USER,config.MYSQL_PASSWD,config.MYSQL_DBNAME)
         cursor=conn.cursor()
         mysql="insert into {tablename} values ('{ip_port}') ".format(tablename=config.MYSQL_TABLE_NAME,ip_port=ip_port)
-        #print (mysql)
+        print (mysql)
         cursor.execute(mysql)
         conn.commit()
     except Exception as e:
@@ -36,7 +36,7 @@ def insert_iplist(ip_list):
         cursor=conn.cursor()
         for item in ip_list:
             mysql="insert into {tablename} values ('{ip_port}') ".format(tablename=config.MYSQL_TABLE_NAME,ip_port=item)
-            #print (mysql)
+            print (mysql)
             cursor.execute(mysql)
         conn.commit()
     except Exception as e:
