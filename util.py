@@ -9,6 +9,8 @@ def get():
     proxies['https']='https://{ip_item}'.format(ip_item=ip_item)
     return proxies
 
-
+"""
+# use 
 if __name__=='__main__':
     print (get())
+"""

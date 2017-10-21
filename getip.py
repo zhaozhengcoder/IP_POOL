@@ -85,14 +85,4 @@ def data_persistence(verified_iplist):
     db.init()
     db.insert_iplist(verified_iplist)
     
-
-
-if __name__=='__main__':
-    print ('ok')
-    ip_list=getip()
-    verified_iplist=verifyip_multithread(ip_list)
-    data_persistence(verified_iplist)
-
-    print ('get ip >')
-    print (verified_iplist)
     
